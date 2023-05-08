@@ -147,11 +147,6 @@ img {
 .header-box {
   padding: 0 15px;
 }
-.adress-item,
-.menu-item {
-  position: relative;
-  padding: 24px 0;
-}
 
 .header .logo {
   margin-right: 76px;
