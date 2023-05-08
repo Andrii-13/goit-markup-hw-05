@@ -18,6 +18,15 @@
   --icon-footer-accent: #31d0aa;
 
   --border-color: #e7e9fc;
+
+  /* overlay */
+  --overlay-card: #4d5ae5;
+
+  /* transition effects */
+  --main-anim-duration: 250ms;
+  --main-cubic: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --modal-hero-cubic: cubic-bezier(0.42, 0, 1, 1);
 }
 
 body {
@@ -25,10 +34,6 @@ body {
   background-color: var(--primary-background-colour);
   color: #434455;
 }
-
-/* * {
-  outline: 2px solid coral;
-} */
 
 /* ================ components ================ */
 h1,
@@ -127,6 +132,8 @@ img {
   border-radius: 50%;
   align-items: center;
   justify-content: center;
+
+  transition: background-color var(--main-anim-duration) var(--main-cubic);
 }
 
 .team .social-icon {
@@ -186,9 +193,16 @@ img {
 
   letter-spacing: 0.02em;
   color: var(--secondery-text-colour);
+
+  transition: color var(--main-anim-duration) var(--main-cubic);
 }
 .studio-link {
   position: relative;
+}
+
+.studio-activ,
+.portfolio-activ {
+  color: var(--accent-colour);
 }
 
 .studio-activ::after,
@@ -202,11 +216,6 @@ img {
   height: 4px;
   background-color: var(--accent-colour);
   border-radius: 2px;
-}
-
-.studio-activ,
-.portfolio-activ {
-  color: var(--accent-colour);
 }
 
 .menu-item:hover,
@@ -232,6 +241,8 @@ img {
   letter-spacing: 0.02em;
 
   color: inherit;
+
+  transition: color var(--main-anim-duration) var(--main-cubic);
 }
 
 .adress-item:hover,
@@ -300,6 +311,8 @@ img {
   height: 56px;
 
   border: none;
+
+  transition: background-color var(--main-anim-duration) var(--main-cubic);
 }
 /* ---------- advantages-------- */
 .adv-title {
@@ -400,6 +413,9 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition: fill var(--main-anim-duration) var(--main-cubic),
+    color var(--main-anim-duration) var(--main-cubic);
 }
 .costum-link:hover,
 .costum-link:focus {
@@ -409,6 +425,8 @@ img {
 
 .costum-pic {
   fill: currentColor;
+
+  transition: fill var(--main-anim-duration) var(--main-cubic);
 }
 
 .costum-link:hover .costum-pic,
@@ -488,6 +506,12 @@ img {
   background-color: var(--section-background-colour);
 
   border: 1px solid var(--border-color);
+
+  transition: color var(--main-anim-duration) var(--main-cubic),
+    background-color var(--main-anim-duration) var(--main-cubic),
+    border var(--main-anim-duration) var(--main-cubic),
+    box-shadow var(--main-anim-duration) var(--main-cubic),
+    border-radius var(--main-anim-duration) var(--main-cubic);
 }
 .filter-button:hover,
 .filter-button:focus {
@@ -514,9 +538,37 @@ img {
   color: #434455;
 }
 
+/*  overlay */
+
+.overlay-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  color: var(--footer-text-colour);
+  background-color: var(--overlay-card);
+
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+
+  padding: 40px 32px 164px;
+
+  transform: translateY(100%);
+  transition: transform var(--main-anim-duration) var(--main-cubic);
+}
+.card-box:hover .overlay-card,
+.card-box:focus .overlay-card {
+  transform: translateY(0);
+}
 .card-box {
   display: block;
   flex-basis: calc(100% / 3);
+
+  transition: box-shadow var(--main-anim-duration) var(--main-cubic);
 }
 .card-box:hover,
 .card-box:focus {
@@ -533,6 +585,12 @@ img {
 .app-cards {
   width: 360px;
 }
+
+.img-box {
+  position: relative;
+  overflow: hidden;
+}
+
 .card-content {
   padding: 32px 16px;
   border: 1px solid var(--border-color);
@@ -556,9 +614,18 @@ img {
   left: 0;
 
   background: rgba(46, 47, 66, 0.4);
+
+  transition: opacity var(--main-anim-duration) var(--main-cubic),
+    visibility var(--main-anim-duration) var(--main-cubic);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  /* invisible for seak robot */
+  visibility: hidden;
+  pointer-events: none;
 }
 
-.modal-window {
+.modal {
   position: absolute;
   width: 408px;
   height: 584px;
@@ -568,9 +635,17 @@ img {
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 
-  top: calc(50% - 292px);
-  left: calc(50% - 204px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+
+  transition: transform var(--main-anim-duration) var(--modal-hero-cubic);
 }
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(2);
+}
+
 .modal-btn-close {
   position: absolute;
 
@@ -595,8 +670,4 @@ img {
   width: 8px;
   height: 8px;
   fill: var(--secondary-background-colour);
-}
-
-.is-hidden {
-  overflow: visible;
 }
