@@ -25,8 +25,6 @@
   /* transition effects */
   --main-anim-duration: 250ms;
   --main-cubic: cubic-bezier(0.4, 0, 0.2, 1);
-
-  --modal-hero-cubic: cubic-bezier(0.42, 0, 1, 1);
 }
 
 body {
@@ -151,15 +149,16 @@ img {
 }
 .adress-item,
 .menu-item {
+  position: relative;
   padding: 24px 0;
 }
 
 .header .logo {
   margin-right: 76px;
 }
-.menu-link {
-  position: relative;
-}
+/* .menu-link {
+  ;
+} */
 
 .menu-link:not(:last-child) {
   margin-right: 40px;
@@ -196,6 +195,12 @@ img {
 
   transition: color var(--main-anim-duration) var(--main-cubic);
 }
+
+.menu-item:hover,
+.menu-item:focus {
+  color: var(--accent-colour);
+}
+
 .studio-link {
   position: relative;
 }
@@ -208,7 +213,7 @@ img {
 .studio-activ::after,
 .portfolio-activ::after {
   position: absolute;
-  bottom: calc(-100% - 1px);
+  bottom: -1px;
   left: 0;
   content: '';
   display: block;
@@ -218,10 +223,6 @@ img {
   border-radius: 2px;
 }
 
-.menu-item:hover,
-.menu-item:focus {
-  color: var(--accent-colour);
-}
 /* ------------  adress ---------------- */
 .adress {
   margin-left: auto;
@@ -415,7 +416,8 @@ img {
   align-items: center;
 
   transition: fill var(--main-anim-duration) var(--main-cubic),
-    color var(--main-anim-duration) var(--main-cubic);
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .costum-link:hover,
 .costum-link:focus {
@@ -494,6 +496,7 @@ img {
 }
 
 /* ---------- filter -------------- */
+
 .filter-button {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
@@ -507,11 +510,10 @@ img {
 
   border: 1px solid var(--border-color);
 
-  transition: color var(--main-anim-duration) var(--main-cubic),
-    background-color var(--main-anim-duration) var(--main-cubic),
-    border var(--main-anim-duration) var(--main-cubic),
-    box-shadow var(--main-anim-duration) var(--main-cubic),
-    border-radius var(--main-anim-duration) var(--main-cubic);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .filter-button:hover,
 .filter-button:focus {
@@ -628,7 +630,7 @@ img {
 .modal {
   position: absolute;
   width: 408px;
-  height: 584px;
+  min-height: 576px;
 
   background-color: var(--modal-background-color);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
@@ -639,7 +641,7 @@ img {
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
 
-  transition: transform var(--main-anim-duration) var(--modal-hero-cubic);
+  transition: transform var(--main-anim-duration) var(--main-cubic);
 }
 
 .backdrop.is-hidden .modal {
@@ -648,6 +650,9 @@ img {
 
 .modal-btn-close {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   width: 24px;
   height: 24px;
@@ -662,12 +667,23 @@ img {
   right: 24px;
 
   cursor: pointer;
+
+  transition: background-color var(--main-anim-duration) var(--main-cubic),
+    border var(--main-anim-duration) var(--main-cubic);
 }
+.modal-btn-close:hover,
+.modal-btn-close:focus {
+  background-color: var(--accent-colour);
+  border: none;
+}
+
 .modal-icon {
   position: absolute;
-  top: calc(50% - 4px);
-  left: calc(50% - 4px);
-  width: 8px;
-  height: 8px;
   fill: var(--secondary-background-colour);
+
+  transition: fill var(--main-anim-duration) var(--main-cubic);
+}
+.modal-btn-close:hover .modal-icon,
+.modal-btn-close:focus .modal-icon {
+  fill: var(--primary-background-colour);
 }
