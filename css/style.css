@@ -104,9 +104,9 @@ img {
   padding: 0 15px;
 }
 
-.wrapper {
+/* .wrapper {
   width: 1440px;
-}
+} */
 
 .transform {
   display: flex;
@@ -264,10 +264,12 @@ img {
     url(../images/people-office.jpg);
 
   max-width: 1440px;
+  margin: 0 auto;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
+
 .hero-box {
   text-align: center;
 }
